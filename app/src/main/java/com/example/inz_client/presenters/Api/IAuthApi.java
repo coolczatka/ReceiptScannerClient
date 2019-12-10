@@ -11,9 +11,9 @@ import retrofit2.http.Path;
 
 public interface IAuthApi {
 
-    @POST("login")
+    @POST("/login")
     Call<Token> login(@Body LoginCredentials loginCredentials);
 
-    @POST("register")
+    @POST("/register")
     Call<User> register(@Body User user);
 }

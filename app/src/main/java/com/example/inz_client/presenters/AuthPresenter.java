@@ -23,14 +23,10 @@ public class AuthPresenter implements IAuthPresenter {
     IAuthApi client;
     ILoginView loginView;
     IRegisterView registerView;
-    User loggedUser;
+    public static User loggedUser;
 
     public User getLoggedUser() {
         return loggedUser;
-    }
-
-    public void setLoggedUser(User loggedUser) {
-        this.loggedUser = loggedUser;
     }
 
     public AuthPresenter(@Nullable ILoginView lView, @Nullable IRegisterView rView) {
@@ -87,6 +83,6 @@ public class AuthPresenter implements IAuthPresenter {
 
     @Override
     public void logout() {
-
+        loggedUser = null;
     }
 }

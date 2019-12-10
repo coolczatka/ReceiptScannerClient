@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.inz_client.R;
+import com.example.inz_client.models.Auth.LoginCredentials;
 import com.example.inz_client.presenters.AuthPresenter;
 import com.example.inz_client.presenters.IAuthPresenter;
 import com.example.inz_client.views.ILoginView;
@@ -45,6 +46,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     public void log_in(View view){
         if(validateLogin()){
+            LoginCredentials lc = new LoginCredentials(emailField.getText().toString(),passwordField.getText().toString());
+            authPresenter.performLogin(lc);
             loginSuccess();
         }
     }
