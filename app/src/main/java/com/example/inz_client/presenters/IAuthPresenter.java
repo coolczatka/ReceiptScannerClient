@@ -11,5 +11,5 @@ public interface IAuthPresenter {
     void performLogin(LoginCredentials credentials);
     void register(User user);
     void logout();
-    User getLoggedUser();
+    String getLoggedUserToken();
 }

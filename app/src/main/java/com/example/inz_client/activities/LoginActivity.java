@@ -48,7 +48,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         if(validateLogin()){
             LoginCredentials lc = new LoginCredentials(emailField.getText().toString(),passwordField.getText().toString());
             authPresenter.performLogin(lc);
-            loginSuccess();
         }
     }
 
@@ -73,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     @Override
     public void loginSuccess() {
         Intent i = new Intent(this,MainActivity.class);
-        i.putExtra("token", authPresenter.getLoggedUser().getToken());
+        i.putExtra("token", authPresenter.getLoggedUserToken());
         startActivity(i);
         finish();
         error.setText("");

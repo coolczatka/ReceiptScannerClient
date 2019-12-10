@@ -1,15 +1,15 @@
 package com.example.inz_client.models.Auth;
 
 public class LoginCredentials {
-    String email;
+    String username;
     String password;
 
     public String getEmail() {
-        return email;
+        return username;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.username = email;
     }
 
     public String getPassword() {
@@ -21,7 +21,7 @@ public class LoginCredentials {
     }
 
     public LoginCredentials(String email, String password) {
-        this.email = email;
+        this.username = email;
         this.password = password;
     }
 }

@@ -65,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
             errorText.setText("Wpisz poprawny email");
             result = false;
         }
-        if(password.equals(confirmedPassword) && !password.equals("")){
+        if(!password.equals(confirmedPassword) && !password.equals("")){
             errorText.setText("Hasła nie są takie same");
             result = false;
         }

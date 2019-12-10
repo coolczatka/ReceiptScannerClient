@@ -23,38 +23,44 @@ public class AuthPresenter implements IAuthPresenter {
     IAuthApi client;
     ILoginView loginView;
     IRegisterView registerView;
-    public static User loggedUser;
+    public static String token = null;
 
-    public User getLoggedUser() {
-        return loggedUser;
+    public String getLoggedUserToken() {
+        return token;
     }
 
     public AuthPresenter(@Nullable ILoginView lView, @Nullable IRegisterView rView) {
         loginView = lView;
         registerView = rView;
-        loggedUser = null;
         client = ApiClient.getClinet().create(IAuthApi.class);
     }
 
     @Override
     public void performLogin(final LoginCredentials credentials) {
         //musi być w osobnym wątku
+        Log.d("tag","start");
         Call<Token> tokenCall = client.login(credentials);
-        try {
-            Response<Token> response = tokenCall.execute();
-            String token = response.body().getToken();
-            if(token != null) {
-                loggedUser = User.loadLoginCredentails(credentials);
-                loggedUser.attachToken(token);
-                loginView.loginSuccess();
+        tokenCall.enqueue(new Callback<Token>() {
+            @Override
+            public void onResponse(Call<Token> call, Response<Token> response) {
+                Log.d("tag","przed try");
+                try {
+                    token = response.body().getToken();
+                    Log.d("tag","w zap");
+                    Log.d("tag",token);
+                    loginView.loginSuccess();
+                }catch (NullPointerException e) {
+                    Log.d("tag","blad");
+                    loginView.loginError("Błędne dane logowania");
+                }
             }
-            else{
-                loginView.loginError("cos zle");
+
+            @Override
+            public void onFailure(Call<Token> call, Throwable t) {
+                Log.d("tag","blad");
+                loginView.loginError("Błędne dane logowania");
             }
-        }
-        catch (IOException e){
-            Log.e("Auth",e.getMessage());
-        }
+        });
     }
 
     @Override
@@ -83,6 +89,6 @@ public class AuthPresenter implements IAuthPresenter {
 
     @Override
     public void logout() {
-        loggedUser = null;
+        token = null;
     }
 }
