@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.inz_client.R;
 import com.example.inz_client.models.Auth.LoginCredentials;
@@ -37,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         authPresenter = new AuthPresenter(this,null);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         emailField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
         error = findViewById(R.id.error);
