@@ -8,11 +8,9 @@ import com.example.inz_client.models.Auth.LoginCredentials;
 import com.example.inz_client.models.Auth.Token;
 import com.example.inz_client.models.User;
 import com.example.inz_client.presenters.Api.ApiClient;
-import com.example.inz_client.presenters.Api.IAuthApi;
+import com.example.inz_client.presenters.Api.IApi;
 import com.example.inz_client.views.ILoginView;
 import com.example.inz_client.views.IRegisterView;
-
-import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,7 +18,7 @@ import retrofit2.Response;
 
 public class AuthPresenter implements IAuthPresenter {
 
-    IAuthApi client;
+    IApi client;
     ILoginView loginView;
     IRegisterView registerView;
     public static String token = null;
@@ -32,25 +30,20 @@ public class AuthPresenter implements IAuthPresenter {
     public AuthPresenter(@Nullable ILoginView lView, @Nullable IRegisterView rView) {
         loginView = lView;
         registerView = rView;
-        client = ApiClient.getClinet().create(IAuthApi.class);
+        client = ApiClient.getClinet().create(IApi.class);
     }
 
     @Override
     public void performLogin(final LoginCredentials credentials) {
-        //musi być w osobnym wątku
-        Log.d("tag","start");
         Call<Token> tokenCall = client.login(credentials);
         tokenCall.enqueue(new Callback<Token>() {
+
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
-                Log.d("tag","przed try");
                 try {
-                    token = response.body().getToken();
-                    Log.d("tag","w zap");
-                    Log.d("tag",token);
+                    token = "Token "+response.body().getToken();
                     loginView.loginSuccess();
                 }catch (NullPointerException e) {
-                    Log.d("tag","blad");
                     loginView.loginError("Błędne dane logowania");
                 }
             }
