@@ -27,5 +27,5 @@ public interface IApi {
     @GET("receipts/")
     Call<List<Receipt>> getReceipts(@Header("Authorization") String token);
     @GET("products/{receipt_id}/")
-    Call<List<Product>> getProducts(@Header("Authorization") String token);
+    Call<List<Product>> getProducts(@Header("Authorization") String token, @Path("receipt_id") String receipt_id);
 }

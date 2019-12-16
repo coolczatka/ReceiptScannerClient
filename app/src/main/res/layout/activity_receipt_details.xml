@@ -8,21 +8,23 @@
     tools:context=".activities.ReceiptDetailsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
         android:id="@+id/productrv"
-        android:layout_height="662dp" />
+        android:layout_width="match_parent"
+        android:layout_height="521dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp">
+
         <TextView
             android:id="@+id/sum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:textSize="25sp"
-            android:text="placeholder" />
+            android:layout_centerVertical="true"
+            android:text="placeholder"
+            android:textColor="#00cc00"
+            android:textSize="25sp" />
 
     </RelativeLayout>
 </LinearLayout>

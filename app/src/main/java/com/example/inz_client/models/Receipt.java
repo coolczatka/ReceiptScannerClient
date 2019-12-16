@@ -3,15 +3,15 @@ package com.example.inz_client.models;
 import java.util.Date;
 
 public class Receipt {
-    int id;
+    String id;
     String shop;
     String date;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

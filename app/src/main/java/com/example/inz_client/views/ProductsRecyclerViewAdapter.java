@@ -1,5 +1,6 @@
 package com.example.inz_client.views;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +14,24 @@ import com.example.inz_client.models.Product;
 
 import java.util.List;
 
-public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsRecyclerViewAdapter.ViewHolder> {
+public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsRecyclerViewAdapter.ProductViewHolder> {
 
     List<Product> list;
 
+    public ProductsRecyclerViewAdapter(List<Product> list) {
+        this.list = list;
+    }
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_row,parent,false);
-        ProductsRecyclerViewAdapter.ViewHolder viewHolder = new ProductsRecyclerViewAdapter.ViewHolder(view);
+        ProductViewHolder viewHolder = new ProductViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+        Log.d(this.getClass().getName(),"onBind odpalone");
         Product p = list.get(position);
         String amount = String.valueOf(p.getAmount());
         String price = String.valueOf(p.getPrice());
@@ -37,13 +42,17 @@ public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsRe
 
     @Override
     public int getItemCount() {
-        return list.size();
+        try {
+            return list.size();
+        }catch (NullPointerException e){
+            return 0;
+        }
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ProductViewHolder extends RecyclerView.ViewHolder{
         TextView productInfo;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             productInfo = itemView.findViewById(R.id.product_info);
         }

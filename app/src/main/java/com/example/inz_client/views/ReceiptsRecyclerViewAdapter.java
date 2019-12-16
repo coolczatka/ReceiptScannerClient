@@ -39,7 +39,7 @@ public class ReceiptsRecyclerViewAdapter extends RecyclerView.Adapter<ReceiptsRe
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ReceiptViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ReceiptViewHolder holder, final int position) {
         Log.d(this.getClass().getName(),"onBind odpalone");
         holder.shop.setText(list.get(position).getShop());
         holder.data.setText(list.get(position).getDate());
@@ -49,6 +49,7 @@ public class ReceiptsRecyclerViewAdapter extends RecyclerView.Adapter<ReceiptsRe
             public void onClick(View view) {
                 Intent i = new Intent(context,ReceiptDetailsActivity.class);
                 i.putExtra("token",token);
+                i.putExtra("receipt_id",list.get(position).getId());
                 context.startActivity(i);
             }
         });
