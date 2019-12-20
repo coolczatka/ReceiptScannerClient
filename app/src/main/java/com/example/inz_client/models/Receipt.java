@@ -7,6 +7,11 @@ public class Receipt {
     String shop;
     String date;
 
+    public Receipt(String shop, String date) {
+        this.shop = shop;
+        this.date = date;
+    }
+
     public String getId() {
         return id;
     }

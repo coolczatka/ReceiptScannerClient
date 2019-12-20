@@ -10,7 +10,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productrv"
         android:layout_width="match_parent"
-        android:layout_height="521dp" />
+        android:layout_height="459dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"

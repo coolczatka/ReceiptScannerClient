@@ -4,6 +4,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+
         
     }
     dependencies {
@@ -12,10 +13,11 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+
 dependencies {
     apply plugin: 'java'
-    compile 'com.android.support:recyclerview-v7:21.0.+'
-
+    implementation 'com.android.support:recyclerview-v7:21.0.+'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 }
 
 
@@ -23,6 +25,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        maven { url 'https://jitpack.io' }
     }
 }
