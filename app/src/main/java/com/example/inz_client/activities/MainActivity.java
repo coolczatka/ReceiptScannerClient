@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.example.inz_client.models.ImageResponse;
+import com.example.inz_client.models.Product;
 import com.example.inz_client.models.Receipt;
 import com.example.inz_client.presenters.IMainPresenter;
 import com.example.inz_client.presenters.MainPresenter;
@@ -42,6 +43,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements IMainView {
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
         statisticsButton = findViewById(R.id.statistics);
         FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton addR = findViewById(R.id.addR);
         fab.setOnClickListener(new View.OnClickListener() {
             private File createTemporaryFile(String part, String ext) throws Exception
             {
@@ -128,8 +131,25 @@ public class MainActivity extends AppCompatActivity implements IMainView {
                 startActivity(statisticIntent) ;
             }
         });
+        addR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(c,AddReceiptActivity.class);
+                i.putExtra("token",token);
+                startActivity(i);
+            }
+        });
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        try {
+            presenter.takeData(token);
+            adapter.notifyDataSetChanged();
+        }catch (NullPointerException e) {
+            Log.d("act","1st time");
+        }
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         Bitmap imageBitmap = grabImage();
@@ -178,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @Override
     public void startProductFormActivity(ImageResponse response) {
         Intent productFormIntent = new Intent(MainActivity.this,AddReceiptActivity.class);
+        productFormIntent.putExtra("token",token);
         productFormIntent.putExtra("response",response);
         startActivity(productFormIntent);
     }

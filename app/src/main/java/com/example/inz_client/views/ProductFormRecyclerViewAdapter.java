@@ -1,5 +1,6 @@
 package com.example.inz_client.views;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class ProductFormRecyclerViewAdapter extends RecyclerView.Adapter<Product
 
     @Override
     public void onBindViewHolder(@NonNull ProductFormViewHolder holder, int position) {
+        Log.d("product row","onBind odpalone");
         Product p = list.get(position);
         holder.name.setText(p.getName());
         holder.amount.setText(String.valueOf(p.getAmount()));
@@ -42,7 +44,7 @@ public class ProductFormRecyclerViewAdapter extends RecyclerView.Adapter<Product
         return list.size();
     }
 
-    class ProductFormViewHolder extends RecyclerView.ViewHolder {
+    public class ProductFormViewHolder extends RecyclerView.ViewHolder {
         EditText name;
         EditText amount;
         EditText price;
@@ -51,6 +53,39 @@ public class ProductFormRecyclerViewAdapter extends RecyclerView.Adapter<Product
             name = itemView.findViewById(R.id.nameEt);
             amount = itemView.findViewById(R.id.amountEt);
             price = itemView.findViewById(R.id.priceEt);
+        }
+        public boolean validatePrice(){
+            return price.getText().toString().matches("\\d+\\.?\\d{0,2}");
+        }
+        public boolean validateAmount(){
+            return amount.getText().toString().matches("\\d+\\.?\\d{0,2}");
+        }
+        public boolean validateName(){
+            return !name.getText().toString().equals("");
+        }
+
+        public EditText getName() {
+            return name;
+        }
+
+        public void setName(EditText name) {
+            this.name = name;
+        }
+
+        public EditText getAmount() {
+            return amount;
+        }
+
+        public void setAmount(EditText amount) {
+            this.amount = amount;
+        }
+
+        public EditText getPrice() {
+            return price;
+        }
+
+        public void setPrice(EditText price) {
+            this.price = price;
         }
     }
 }

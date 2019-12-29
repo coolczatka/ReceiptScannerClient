@@ -6,12 +6,86 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".activities.AddReceiptActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+
+        <TextView
+            android:id="@+id/nameEt"
+            android:layout_width="183dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Nazwa"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/amountEt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:padding="10dp"
+            android:text="Ilość"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/priceEt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:padding="10dp"
+            android:text="Cena"
+            android:textSize="20sp" />
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductForms"
         android:layout_width="match_parent"
-        android:layout_height="356dp" />
+        android:layout_height="329dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="20dp"
+            android:text="Sklep"/>
 
+        <EditText
+            android:id="@+id/shopEd"
+            android:layout_width="351dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="20dp"
+            android:padding="5dp"
+
+            ></EditText>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="20dp"
+            android:text="Data(format rrrr-mm-dd)"/>
+
+        <EditText
+            android:id="@+id/dateEd"
+            android:inputType="date"
+            android:layout_width="351dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="20dp"
+            android:padding="5dp"
+
+            ></EditText>
+
+    </LinearLayout>
     <Button
         android:id="@+id/addProduct"
         android:layout_width="match_parent"

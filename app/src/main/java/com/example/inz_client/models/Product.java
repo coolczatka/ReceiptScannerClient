@@ -14,6 +14,12 @@ public class Product implements Parcelable {
         price = in.readDouble();
     }
 
+    public Product(String name, double amount, double price) {
+        this.name = name;
+        this.amount = amount;
+        this.price = price;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);

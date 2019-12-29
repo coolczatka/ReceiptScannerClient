@@ -35,7 +35,10 @@ public interface IApi {
     Call<List<Receipt>> getReceipts(@Header("Authorization") String token);
     @GET("products/{receipt_id}/")
     Call<List<Product>> getProducts(@Header("Authorization") String token, @Path("receipt_id") String receipt_id);
-
+    @POST("receipts/")
+    Call<Receipt> postReceipt(@Header("Authorization") String token, @Body Receipt receipt);
+    @POST("products/{receipt_id}/")
+    Call<Product> postProduct(@Header("Authorization") String token, @Path("receipt_id") String receipt_id,@Body Product product);
     //upload
     @Multipart
     @POST("pictures/")

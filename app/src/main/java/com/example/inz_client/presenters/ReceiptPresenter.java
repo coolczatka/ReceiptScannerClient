@@ -39,6 +39,7 @@ public class ReceiptPresenter {
                     Log.d("produkty","Petla"+i);
                     total += response.body().get(i).getAmount() * response.body().get(i).getPrice();
                 }
+                total = Math.round(total*100.0)/100.0;
                 ReceiptPresenter.total = total;
                 receiptView.showData(response.body());
                 receiptView.showTotalPrice();
