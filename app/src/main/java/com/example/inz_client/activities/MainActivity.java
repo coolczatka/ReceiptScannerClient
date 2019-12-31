@@ -155,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         Bitmap imageBitmap = grabImage();
         File file = savebitmap(imageBitmap);
         presenter.uploadImage(token,file);
-
         super.onActivityResult(requestCode,resultCode,data);
     }
 

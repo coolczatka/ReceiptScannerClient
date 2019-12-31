@@ -2,6 +2,7 @@ package com.example.inz_client.presenters;
 
 import android.net.Uri;
 import android.os.FileUtils;
+import android.util.Log;
 
 import com.example.inz_client.models.ImageResponse;
 import com.example.inz_client.models.Receipt;
@@ -53,12 +54,13 @@ public class MainPresenter implements IMainPresenter {
             client.uploadPhoto(token, multipartBody).enqueue(new Callback<ImageResponse>() {
                 @Override
                 public void onResponse(Call<ImageResponse> call, Response<ImageResponse> response) {
+                    Log.d("tagito",response.body().getDate());
                     view.startProductFormActivity(response.body());
                 }
 
                 @Override
                 public void onFailure(Call<ImageResponse> call, Throwable t) {
-
+                    Log.d("tagito","nie wyszlo");
                 }
             });
         }catch (NullPointerException e){

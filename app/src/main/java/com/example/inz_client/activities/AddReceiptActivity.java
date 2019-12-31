@@ -82,10 +82,9 @@ public class AddReceiptActivity extends AppCompatActivity implements IAddReceipt
         recyclerView = findViewById(R.id.rvProductForms);
 
         token = getIntent().getStringExtra("token");
-        data = getIntent().getParcelableExtra("respnse");
+        data = getIntent().getParcelableExtra("response");
         if(data==null)
             data = new ImageResponse("","",new ArrayList<Product>());
-
         adapter = new ProductFormRecyclerViewAdapter(data.getProducts());
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
