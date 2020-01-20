@@ -38,20 +38,27 @@ public class AddReceiptActivity extends AppCompatActivity implements IAddReceipt
 
     AddReceiptPresenter presenter;
 
+    private boolean validateDate(String date){
+        return date.matches("\\d{4}-\\d{2}-\\d{2}");
+    }
     @Override
     public boolean validateForm() {
         for (int i = 0; i < recyclerView.getChildCount(); i++) {
             ProductFormRecyclerViewAdapter.ProductFormViewHolder viewHolder = (ProductFormRecyclerViewAdapter.ProductFormViewHolder)recyclerView.findViewHolderForAdapterPosition(i);
             if(!viewHolder.validateName()) {
-                Toast.makeText(AddReceiptActivity.this, "Brak nazwy", Toast.LENGTH_LONG);
+                Toast.makeText(AddReceiptActivity.this, "Brak nazwy", Toast.LENGTH_LONG).show();
                 return false;
             }
             if(!viewHolder.validateAmount()) {
-                Toast.makeText(AddReceiptActivity.this, "Błędna ilość", Toast.LENGTH_LONG);
+                Toast.makeText(AddReceiptActivity.this, "Błędna ilość", Toast.LENGTH_LONG).show();
                 return false;
             }
             if(!viewHolder.validatePrice()) {
-                Toast.makeText(AddReceiptActivity.this, "Błędna cena", Toast.LENGTH_LONG);
+                Toast.makeText(AddReceiptActivity.this, "Błędna cena", Toast.LENGTH_LONG).show();
+                return false;
+            }
+            if(!validateDate(date.getText().toString())){
+                Toast.makeText(AddReceiptActivity.this, "Błędny format daty", Toast.LENGTH_LONG).show();
                 return false;
             }
         }
@@ -65,7 +72,8 @@ public class AddReceiptActivity extends AppCompatActivity implements IAddReceipt
 
     @Override
     public void error() {
-        Toast.makeText(AddReceiptActivity.this, "Nie udało się dodać paragonu. Spróbuj później", Toast.LENGTH_LONG);
+        Toast.makeText(AddReceiptActivity.this,
+                "Nie udało się dodać paragonu. Spróbuj później", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -89,7 +97,7 @@ public class AddReceiptActivity extends AppCompatActivity implements IAddReceipt
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        if(data.getDate()=="" || data.getDate()==null) {
+        if(data.getDate().equals("") || data.getDate()==null) {
             data.setDate(getDateFormatted());
         }
         date.setText(data.getDate());
@@ -100,7 +108,7 @@ public class AddReceiptActivity extends AppCompatActivity implements IAddReceipt
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                data.getProducts().add(0,new Product("",0,0));
+                data.getProducts().add(0,new Product("",1,0));
                 adapter.notifyItemInserted(0);
                 recyclerView.smoothScrollToPosition(0);
             }
@@ -129,7 +137,7 @@ public class AddReceiptActivity extends AppCompatActivity implements IAddReceipt
     private String getDateFormatted(){
         Calendar cal = Calendar.getInstance();
         String year = String.valueOf(cal.get(Calendar.YEAR));
-        String month = cal.get(Calendar.MONTH)+1<10 ? "0"+cal.get(Calendar.MONTH)+1 : String.valueOf(cal.get(Calendar.MONTH)+1);
+        String month = cal.get(Calendar.MONTH)+1<10 ? "0"+String.valueOf(cal.get(Calendar.MONTH)+1) : String.valueOf(cal.get(Calendar.MONTH)+1);
         String day = cal.get(Calendar.DAY_OF_MONTH)<10 ? "0"+cal.get(Calendar.DAY_OF_MONTH) : String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
         return year+"-"+month+"-"+day;
     }

@@ -21,6 +21,17 @@ public class ImageResponse implements Parcelable {
         date = in.readString();
         products = in.createTypedArrayList(Product.CREATOR);
     }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(shop);
+        parcel.writeString(date);
+        parcel.writeTypedList(products);
+    }
 
     public static final Creator<ImageResponse> CREATOR = new Creator<ImageResponse>() {
         @Override
@@ -58,15 +69,4 @@ public class ImageResponse implements Parcelable {
         this.products = products;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(shop);
-        parcel.writeString(date);
-        parcel.writeTypedList(products);
-    }
 }

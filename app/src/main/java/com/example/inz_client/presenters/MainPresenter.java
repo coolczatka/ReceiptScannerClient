@@ -50,14 +50,14 @@ public class MainPresenter implements IMainPresenter {
         try {
             String path = image.getPath();
             RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), image);
-            MultipartBody.Part multipartBody = MultipartBody.Part.createFormData("picture", image.getName(), requestFile);
+            MultipartBody.Part multipartBody = MultipartBody.Part.createFormData("picture",
+                    image.getName(), requestFile);
             client.uploadPhoto(token, multipartBody).enqueue(new Callback<ImageResponse>() {
                 @Override
                 public void onResponse(Call<ImageResponse> call, Response<ImageResponse> response) {
                     Log.d("tagito",response.body().getDate());
                     view.startProductFormActivity(response.body());
                 }
-
                 @Override
                 public void onFailure(Call<ImageResponse> call, Throwable t) {
                     Log.d("tagito","nie wyszlo");

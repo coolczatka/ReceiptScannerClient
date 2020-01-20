@@ -33,20 +33,18 @@ public class ReceiptDetailsActivity extends AppCompatActivity implements IReceip
         recyclerView = findViewById(R.id.productrv);
         sum = findViewById(R.id.sum);
 
-        presenter = new ReceiptPresenter(this,getIntent().getStringExtra("token"),getIntent().getStringExtra("receipt_id"));
+        presenter = new ReceiptPresenter(this,getIntent().getStringExtra("token"),
+                getIntent().getStringExtra("receipt_id"));
         presenter.takeData();
 
     }
 
     @Override
     public void showData(List<Product> list) {
-        Log.d("showData","jestem tu");
         layoutManager = new LinearLayoutManager(this);
         adapter = new ProductsRecyclerViewAdapter(list);
         recyclerView.setLayoutManager(layoutManager);
-        Log.d("showData","po layout");
         recyclerView.setAdapter(adapter);
-        Log.d("showData","po adapterze");
     }
 
     @Override

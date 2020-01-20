@@ -14,7 +14,8 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ProductFormRecyclerViewAdapter extends RecyclerView.Adapter<ProductFormRecyclerViewAdapter.ProductFormViewHolder> {
+public class ProductFormRecyclerViewAdapter
+        extends RecyclerView.Adapter<ProductFormRecyclerViewAdapter.ProductFormViewHolder> {
 
     List<Product> list;
 
@@ -25,7 +26,8 @@ public class ProductFormRecyclerViewAdapter extends RecyclerView.Adapter<Product
     @NonNull
     @Override
     public ProductFormViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_form_row,parent,false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.product_form_row,parent,false);
         ProductFormViewHolder viewHolder = new ProductFormViewHolder(view);
         return viewHolder;
     }

@@ -71,7 +71,6 @@ public class AuthPresenter implements IAuthPresenter {
                     registerView.registerSuccess();
                 }
             }
-
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.e("AuthPresenter","Not Created");

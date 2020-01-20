@@ -35,8 +35,14 @@ public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsRe
         Product p = list.get(position);
         String amount = String.valueOf(p.getAmount());
         String price = String.valueOf(p.getPrice());
-        String total = String.valueOf(p.getPrice()*p.getAmount());
-        String row = p.getName()+": "+amount+"x"+price+" = "+total;
+        double t = p.getPrice()*p.getAmount();
+        String total;
+        if(t<0.01)
+            total = "0";
+        else
+            total = String.valueOf(Math.ceil(t*100)/100);
+        holder.productName.setText(p.getName()+":");
+        String row = amount+"x"+price+" = "+total;
         holder.productInfo.setText(row);
     }
 
@@ -51,10 +57,12 @@ public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsRe
 
     public class ProductViewHolder extends RecyclerView.ViewHolder{
         TextView productInfo;
+        TextView productName;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             productInfo = itemView.findViewById(R.id.product_info);
+            productName = itemView.findViewById(R.id.product_name);
         }
     }
 }

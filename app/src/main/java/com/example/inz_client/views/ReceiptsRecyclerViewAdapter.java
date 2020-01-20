@@ -40,7 +40,6 @@ public class ReceiptsRecyclerViewAdapter extends RecyclerView.Adapter<ReceiptsRe
 
     @Override
     public void onBindViewHolder(@NonNull ReceiptViewHolder holder, final int position) {
-        Log.d(this.getClass().getName(),"onBind odpalone");
         holder.shop.setText(list.get(position).getShop());
         holder.data.setText(list.get(position).getDate());
 

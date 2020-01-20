@@ -6,6 +6,8 @@ import com.example.inz_client.models.Auth.LoginCredentials;
 import com.example.inz_client.models.Auth.Token;
 
 public class User {
+
+    String id;
     String email;
     String password;
     @Nullable
@@ -25,6 +27,14 @@ public class User {
     public static User loadLoginCredentails(LoginCredentials credentials){
         User user = new User(credentials.getEmail(),credentials.getPassword(),null,null);
         return user;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void attachToken(String t){

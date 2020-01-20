@@ -6,10 +6,19 @@ public class Receipt {
     String id;
     String shop;
     String date;
+    String user;
 
     public Receipt(String shop, String date) {
         this.shop = shop;
         this.date = date;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getId() {

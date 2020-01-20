@@ -43,7 +43,8 @@ public class MonthlyStatisticActivity extends AppCompatActivity implements IMSta
             values.add(new BarEntry(i,list.get(i).getSum()));
             labels.add(list.get(i).getMonth());
         }
-        BarDataSet dataSet = new BarDataSet(values,"Zestawienie sumy miesięcznych wydatkow z roku "+year);
+        BarDataSet dataSet = new BarDataSet(values,
+                "Zestawienie sumy miesięcznych wydatkow z roku "+year);
         BarData data = new BarData(dataSet);
         chart.setData(data);
         XAxis xaxis = chart.getXAxis();

@@ -45,7 +45,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     public void log_in(View view){
         if(validateLogin()){
-            LoginCredentials lc = new LoginCredentials(emailField.getText().toString(),passwordField.getText().toString());
+            LoginCredentials lc = new LoginCredentials(emailField.getText().toString(),
+                    passwordField.getText().toString());
             authPresenter.performLogin(lc);
         }
     }

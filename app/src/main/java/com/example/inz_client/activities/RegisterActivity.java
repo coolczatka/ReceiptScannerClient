@@ -76,7 +76,6 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
     @Override
     public void registerSuccess() {
         finish();
-
     }
 
     @Override
