@@ -25,7 +25,7 @@ import retrofit2.http.Query;
 public interface IApi {
 
     //auth
-    @POST("login")
+    @POST("login/")
     Call<Token> login(@Body LoginCredentials loginCredentials);
     @POST("users/")
     Call<User> register(@Body User user);
@@ -52,10 +52,10 @@ public interface IApi {
                                     @Part MultipartBody.Part picture);
 
     //statistics
-    @GET("sum")
+    @GET("sum/")
     Call<List<MonthlyStatistic>> getMS(@Header("Authorization") String token,
                                        @Query("year") int year);
-    @GET("pie")
+    @GET("pie/")
     Call<List<PieStatistic>> getPie(@Header("Authorization") String token,
                                     @Query("year") int year);
 }

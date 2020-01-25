@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static retrofit2.Retrofit.*;
 
 public class ApiClient {
-    public static String BASE_URL = "http://192.168.43.209:8000/inz/";
+    public static String BASE_URL = "http://192.168.56.1:8000/inz/";
     private static Retrofit retrofit = null;
 
     public static Retrofit getClinet(){
